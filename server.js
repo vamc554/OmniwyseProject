@@ -59,6 +59,7 @@ app.post('/login',loginController.login);
 app.get('/notifications',verifyToken,getNotification.getNotification);
 app.get('/schedules',verifyToken,schedules.Schedules);
 app.delete('/delete/:id',schedules.delete);
+app.put('/update/:id',schedules.update);
 app.listen(8080,()=>{
 
     console.log("Server started listening on port 8080");

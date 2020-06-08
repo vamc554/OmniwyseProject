@@ -27,7 +27,7 @@ exports.Schedules=(req,res)=>{
 
 }
  exports.delete= function(req,res){
-     notification.findByIdAndRemove(req.params.id,function(err,data){
+     notification.findByIdAndRemove(req.params.id,{useFindAndModify: false},function(err,data){
          if(err){
              res.status(404).send('internal server error');
 
@@ -39,4 +39,20 @@ exports.Schedules=(req,res)=>{
      })
 
      }
- 
+
+     exports.update= function(req,res){
+         var updateData={
+            title : req.body.title,
+            description : req.body.description,
+            link : req.body.link
+         }
+         notification.findByIdAndUpdate(req.params.id,{$set:updateData},{new:true,upsert:false,useFindAndModify: false},function(err,updatedData){
+               if(err){
+                res.status(404).send('internal server error');
+               }
+               else{
+                    res.send(updatedData);
+               }
+         })
+     }
+     

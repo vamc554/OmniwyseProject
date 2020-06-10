@@ -18,7 +18,7 @@ exports.newNotification = (req,res)=>{
         var image = req.file.path;
         var url = image.split('\\');
         console.log(image);
-         imageurl ="http://localhost:8080/" +url[1];
+         imageurl ="http://localhost:8080/uploads" +url[1];
     }
     else{
         imageurl=null;

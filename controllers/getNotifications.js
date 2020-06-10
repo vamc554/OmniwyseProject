@@ -18,7 +18,7 @@ exports.newNotification = (req,res)=>{
         var image = req.file.path;
         var url = image.split('\\');
         console.log(image);
-         imageurl ="http://localhost:8080/uploads" +url[1];
+         imageurl ="http://localhost:8080/uploads/" +url[1];
     }
     else{
         imageurl=null;
@@ -62,7 +62,7 @@ exports.getNotification = (req,res)=>{
            // console.log(tags);
     var currentTime = new Date(); 
     
-   notification.find({$and:[{$or : [{tag:'All'},{tag:{$in : tags}}]},{date : {$lte:currentTime}}]}).sort({date:-1}).exec(function(err,data){
+   notification.find({$and:[{$or : [{tag:'all'},{tag:{$in : tags}}]},{date : {$lte:currentTime}}]}).sort({date:-1}).exec(function(err,data){
            if(err){
                res.satus(404);
            }
